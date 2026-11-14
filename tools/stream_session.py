@@ -6,7 +6,7 @@ Usage:
   stream_session.py sequence FILE...    run sequence fixtures
   stream_session.py test                run every fixture
 
-Python 3.9+, standard library only. The schema is checked by a small
+Python 3.10+, standard library only. The schema is checked by a small
 built-in JSON Schema 2020-12 evaluator that covers the keywords the
 stream-session schema uses; the tests compare it with the `jsonschema`
 package when that is installed.

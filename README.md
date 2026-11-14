@@ -81,7 +81,7 @@ switcher like NOALBS could be one of the mixer's members.
 | [`spec/v0.md`](spec/v0.md) | The format: ids, the session record, leases and epochs, handover and takeover, hides, owners and grants, sharing levels, the optional server |
 | [`schema/stream-session.v0.schema.json`](schema/stream-session.v0.schema.json) | JSON Schema (2020-12) for every message |
 | [`fixtures/`](fixtures/README.md) | Valid messages, invalid ones with one mistake each, and sequences: handover, takeover, split brain, guests, revoking |
-| [`tools/stream_session.py`](tools/stream_session.py) | Validator and sequence checker. Python 3.9+, standard library only |
+| [`tools/stream_session.py`](tools/stream_session.py) | Validator and sequence checker. Python 3.10+, standard library only |
 | [`tests/`](tests/test_stream_session.py) | Tests for the tool |
 | [`SECURITY.md`](SECURITY.md) | How to report a security problem |
 
