@@ -1,0 +1,14 @@
+{
+  "description": "A companion asks for BRB. Hides apply from any epoch.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "order",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "scope": "show",
+    "epoch": 2,
+    "against": 7,
+    "action": "brb_on",
+    "by": "a4a4b5b5c6c6d7d7"
+  }
+}

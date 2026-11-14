@@ -1,0 +1,24 @@
+{
+  "description": "Sharing nothing, but location on.",
+  "error": "level none can't share location",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "grant",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "grant": "e4e4d5d5c6c6b7b7",
+    "invite": null,
+    "parent": null,
+    "issuer": "2b3c4d5e6f708192",
+    "holder": "1a2b3c4d5e6f7081",
+    "caps": [
+      "feed.on_air"
+    ],
+    "level": "none",
+    "location": "area",
+    "ttl_ms": 600000,
+    "issued": "2026-11-15T14:00:00Z",
+    "renewal": 0,
+    "state": "active"
+  }
+}

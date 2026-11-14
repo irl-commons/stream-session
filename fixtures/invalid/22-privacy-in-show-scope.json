@@ -1,0 +1,16 @@
+{
+  "description": "Privacy is the feed owner's decision, not the show's.",
+  "error": "decided by the feed's owner",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "order",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "scope": "show",
+    "epoch": 1,
+    "against": 3,
+    "action": "privacy_on",
+    "feed": "f1f1e2e2d3d3c4c4",
+    "by": "a3a3b4b4c5c5d6d6"
+  }
+}

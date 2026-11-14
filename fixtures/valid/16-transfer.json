@@ -1,0 +1,13 @@
+{
+  "description": "A planned handover from the box to the phone.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "transfer",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "scope": "show",
+    "epoch": 4,
+    "from": "a3a3b4b4c5c5d6d6",
+    "to": "a2a2b3b3c4c4d5d5"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "description": "The phone asks the coordination server for the next show epoch.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "claim",
+    "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+    "scope": "show",
+    "epoch": 4,
+    "member": "a2a2b3b3c4c4d5d5",
+    "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "description": "Another owner's device joined without a grant.",
+  "error": "joined without a grant",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "record",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "lease": {
+      "scope": "show",
+      "epoch": 1,
+      "holder": "a3a3b4b4c5c5d6d6",
+      "claimed": "start",
+      "valid_for_ms": 15000,
+      "lock_delay_ms": 10000
+    },
+    "version": 1,
+    "seq": 1,
+    "key_gen": 0,
+    "output": {
+      "state": "live",
+      "showing": "program",
+      "since": "2026-11-15T14:00:00Z"
+    },
+    "owners": [
+      {
+        "owner": "1a2b3c4d5e6f7081",
+        "role": "host",
+        "state": "joined"
+      },
+      {
+        "owner": "3c4d5e6f708192a3",
+        "role": "guest",
+        "state": "joined"
+      }
+    ],
+    "members": [
+      {
+        "member": "a3a3b4b4c5c5d6d6",
+        "owner": "1a2b3c4d5e6f7081",
+        "kind": "box",
+        "caps": [
+          "show.view",
+          "show.hide",
+          "show.mix"
+        ],
+        "state": "joined"
+      },
+      {
+        "member": "c1c1d2d2e3e3f4f4",
+        "owner": "3c4d5e6f708192a3",
+        "kind": "phone",
+        "caps": [
+          "show.view"
+        ],
+        "state": "joined",
+        "grant": null
+      }
+    ],
+    "feeds": [
+      {
+        "feed": "f1f1e2e2d3d3c4c4",
+        "owner": "1a2b3c4d5e6f7081",
+        "carrier": "a3a3b4b4c5c5d6d6",
+        "state": "open",
+        "arriving": "up",
+        "on_air": true
+      }
+    ]
+  }
+}

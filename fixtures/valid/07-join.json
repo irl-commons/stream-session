@@ -1,0 +1,15 @@
+{
+  "description": "Jo's phone redeems the invite. The token itself stays in the QR code; the message carries a one-time proof.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "join",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "invite": "d9d9c8c8b7b7a6a6",
+    "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592",
+    "owner": "3c4d5e6f708192a3",
+    "member": "c1c1d2d2e3e3f4f4",
+    "kind": "phone",
+    "label": "Jo"
+  }
+}

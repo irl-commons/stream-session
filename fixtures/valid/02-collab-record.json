@@ -1,0 +1,167 @@
+{
+  "description": "A collab: Kim hosts, Ari co-streams on a shared ingest, Jo is a guest on a WHIP ingest. Ari's feed is off air for now.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "record",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "lease": {
+      "scope": "show",
+      "epoch": 1,
+      "holder": "a3a3b4b4c5c5d6d6",
+      "claimed": "start",
+      "valid_for_ms": 15000,
+      "lock_delay_ms": 10000
+    },
+    "version": 12,
+    "seq": 12,
+    "key_gen": 0,
+    "output": {
+      "state": "live",
+      "showing": "program",
+      "since": "2026-11-15T14:00:00Z"
+    },
+    "owners": [
+      {
+        "owner": "1a2b3c4d5e6f7081",
+        "role": "host",
+        "state": "joined",
+        "label": "Kim"
+      },
+      {
+        "owner": "2b3c4d5e6f708192",
+        "role": "co_streamer",
+        "state": "joined",
+        "label": "Ari"
+      },
+      {
+        "owner": "3c4d5e6f708192a3",
+        "role": "guest",
+        "state": "joined"
+      }
+    ],
+    "members": [
+      {
+        "member": "a3a3b4b4c5c5d6d6",
+        "owner": "1a2b3c4d5e6f7081",
+        "kind": "box",
+        "caps": [
+          "show.view",
+          "show.hide",
+          "show.mix"
+        ],
+        "state": "joined"
+      },
+      {
+        "member": "a2a2b3b3c4c4d5d5",
+        "owner": "1a2b3c4d5e6f7081",
+        "kind": "phone",
+        "caps": [
+          "show.view",
+          "show.hide",
+          "show.mix"
+        ],
+        "state": "joined"
+      },
+      {
+        "member": "a4a4b5b5c6c6d7d7",
+        "owner": "1a2b3c4d5e6f7081",
+        "kind": "companion",
+        "caps": [
+          "show.view",
+          "show.hide"
+        ],
+        "state": "joined"
+      },
+      {
+        "member": "b1b1c2c2d3d3e4e4",
+        "owner": "2b3c4d5e6f708192",
+        "kind": "box",
+        "caps": [
+          "show.view"
+        ],
+        "state": "joined",
+        "grant": "e3e3d4d4c5c5b6b6"
+      },
+      {
+        "member": "b2b2c3c3d4d4e5e5",
+        "owner": "2b3c4d5e6f708192",
+        "kind": "phone",
+        "caps": [
+          "show.view"
+        ],
+        "state": "joined",
+        "grant": "e3e3d4d4c5c5b6b6"
+      },
+      {
+        "member": "c1c1d2d2e3e3f4f4",
+        "owner": "3c4d5e6f708192a3",
+        "kind": "phone",
+        "caps": [
+          "show.view"
+        ],
+        "state": "joined",
+        "grant": "e1e1d2d2c3c3b4b4"
+      }
+    ],
+    "feeds": [
+      {
+        "feed": "f1f1e2e2d3d3c4c4",
+        "owner": "1a2b3c4d5e6f7081",
+        "carrier": "a3a3b4b4c5c5d6d6",
+        "state": "open",
+        "arriving": "up",
+        "on_air": true,
+        "ingest": "kim-srtla",
+        "label": "Kim's camera"
+      },
+      {
+        "feed": "f2f2e3e3d4d4c5c5",
+        "owner": "2b3c4d5e6f708192",
+        "carrier": "b1b1c2c2d3d3e4e4",
+        "state": "open",
+        "arriving": "up",
+        "on_air": false,
+        "ingest": "kim-srtla"
+      },
+      {
+        "feed": "f3f3e4e4d5d5c6c6",
+        "owner": "3c4d5e6f708192a3",
+        "carrier": "c1c1d2d2e3e3f4f4",
+        "state": "open",
+        "arriving": "unknown",
+        "on_air": false,
+        "ingest": "kim-guest"
+      }
+    ],
+    "hides": [
+      {
+        "kind": "off_air",
+        "by": "a3a3b4b4c5c5d6d6",
+        "since": "2026-11-15T14:00:00Z",
+        "feed": "f2f2e3e3d4d4c5c5"
+      }
+    ],
+    "ingests": [
+      {
+        "ingest": "kim-srtla",
+        "owner": "1a2b3c4d5e6f7081",
+        "protocol": "srtla",
+        "shared": true,
+        "feeds": [
+          "f1f1e2e2d3d3c4c4",
+          "f2f2e3e3d4d4c5c5"
+        ]
+      },
+      {
+        "ingest": "kim-guest",
+        "owner": "1a2b3c4d5e6f7081",
+        "protocol": "whip",
+        "shared": true,
+        "feeds": [
+          "f3f3e4e4d5d5c6c6"
+        ]
+      }
+    ]
+  }
+}

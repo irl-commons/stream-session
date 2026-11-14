@@ -1,0 +1,2248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/openstreambox/stream-session/schema/stream-session.v0.schema.json",
+  "title": "stream-session message, v0 (draft)",
+  "description": "Every stream-session v0 message: the session record, owner state, invites, grants, membership, lease and transfer messages, orders, projections and sealed envelopes. Producer schema: extension fields must start with x_<owner>_. Readers must also accept unknown fields (spec section 11). The checks this schema can't express are in tools/stream_session.py.",
+  "type": "object",
+  "required": [
+    "format",
+    "v",
+    "type"
+  ],
+  "properties": {
+    "format": {
+      "const": "stream-session"
+    },
+    "v": {
+      "const": 0
+    },
+    "type": {
+      "enum": [
+        "record",
+        "owner_state",
+        "invite",
+        "join",
+        "grant",
+        "revoke",
+        "leave",
+        "hello",
+        "unknown_member",
+        "transfer",
+        "ready",
+        "handed",
+        "moved",
+        "claim",
+        "claim_result",
+        "order",
+        "projection",
+        "sealed"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "record"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/record"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "owner_state"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/owner_state"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "invite"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/invite"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "join"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/join"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "grant"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/grant"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "revoke"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/revoke"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "leave"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/leave"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "hello"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/hello"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "unknown_member"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/unknown_member"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "transfer"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/transfer"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ready"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/ready"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "handed"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/handed"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "moved"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/moved"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "claim"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/claim"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "claim_result"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/claim_result"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "order"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/order"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "projection"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/projection"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "sealed"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/sealed"
+      }
+    }
+  ],
+  "$defs": {
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "lookup": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "short_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "endpoint_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{4,64}$"
+    },
+    "scope": {
+      "type": "string",
+      "pattern": "^(show|owner:[0-9a-f]{16})$"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "counter": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "datetime": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,9})?(Z|[+-][0-9]{2}:[0-9]{2})$"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "proof": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "level": {
+      "enum": [
+        "minimal",
+        "crew",
+        "production"
+      ]
+    },
+    "grant_level": {
+      "enum": [
+        "none",
+        "minimal",
+        "crew",
+        "production"
+      ]
+    },
+    "location_mode": {
+      "enum": [
+        "off",
+        "area",
+        "live"
+      ]
+    },
+    "device_kind": {
+      "enum": [
+        "box",
+        "phone",
+        "pc",
+        "companion",
+        "hub",
+        "server",
+        "other"
+      ]
+    },
+    "show_cap": {
+      "enum": [
+        "show.view",
+        "show.hide",
+        "show.mix"
+      ]
+    },
+    "cap": {
+      "enum": [
+        "show.view",
+        "show.hide",
+        "show.mix",
+        "feed.contribute",
+        "feed.on_air",
+        "feed.hide",
+        "ingest.use",
+        "grant.attenuate"
+      ]
+    },
+    "lease": {
+      "description": "Who coordinates one scope, in which epoch, and for how long a reader may believe it.",
+      "type": "object",
+      "required": [
+        "scope",
+        "epoch",
+        "holder",
+        "claimed",
+        "valid_for_ms",
+        "lock_delay_ms"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "holder": {
+          "$ref": "#/$defs/short_id"
+        },
+        "claimed": {
+          "enum": [
+            "start",
+            "transfer",
+            "manual",
+            "witness"
+          ]
+        },
+        "valid_for_ms": {
+          "type": "integer",
+          "minimum": 5000,
+          "maximum": 60000
+        },
+        "lock_delay_ms": {
+          "type": "integer",
+          "minimum": 5000,
+          "maximum": 60000
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "record": {
+      "description": "The show's shared state, held by the show coordinator (the mixer) and sent in full to every member.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "lease",
+        "version",
+        "seq",
+        "key_gen",
+        "output",
+        "owners",
+        "members",
+        "feeds"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "previous": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/session_id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lease": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/lease"
+            },
+            {
+              "properties": {
+                "scope": {
+                  "const": "show"
+                }
+              }
+            }
+          ]
+        },
+        "version": {
+          "$ref": "#/$defs/counter"
+        },
+        "seq": {
+          "$ref": "#/$defs/counter"
+        },
+        "key_gen": {
+          "$ref": "#/$defs/counter"
+        },
+        "output": {
+          "$ref": "#/$defs/output"
+        },
+        "owners": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/owner_entry"
+          }
+        },
+        "members": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "items": {
+            "$ref": "#/$defs/member"
+          }
+        },
+        "feeds": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/feed"
+          }
+        },
+        "ingests": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/ingest"
+          }
+        },
+        "hides": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/hide"
+          }
+        },
+        "reach": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/reach"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "output": {
+      "description": "The show's platform output, in stream-status terms: live means delivered, whatever the picture is.",
+      "type": "object",
+      "required": [
+        "state",
+        "showing",
+        "since"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "live",
+            "not_live",
+            "unknown"
+          ]
+        },
+        "showing": {
+          "enum": [
+            "program",
+            "cover",
+            "unknown"
+          ]
+        },
+        "since": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/datetime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "owner_entry": {
+      "type": "object",
+      "required": [
+        "owner",
+        "role",
+        "state"
+      ],
+      "properties": {
+        "owner": {
+          "$ref": "#/$defs/short_id"
+        },
+        "role": {
+          "enum": [
+            "host",
+            "co_streamer",
+            "guest",
+            "helper"
+          ]
+        },
+        "state": {
+          "enum": [
+            "joined",
+            "left",
+            "removed"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "member": {
+      "description": "One device or service in this show. The member id is new per show, so it can't be followed from show to show.",
+      "type": "object",
+      "required": [
+        "member",
+        "owner",
+        "kind",
+        "caps",
+        "state"
+      ],
+      "properties": {
+        "member": {
+          "$ref": "#/$defs/short_id"
+        },
+        "owner": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/short_id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "$ref": "#/$defs/device_kind"
+        },
+        "caps": {
+          "type": "array",
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/show_cap"
+          }
+        },
+        "state": {
+          "enum": [
+            "joined",
+            "left",
+            "removed"
+          ]
+        },
+        "grant": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/short_id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "serves": {
+          "type": "array",
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "witness",
+              "relay"
+            ]
+          }
+        },
+        "heard_ms_ago": {
+          "$ref": "#/$defs/counter"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "feed": {
+      "description": "One contribution slot in the show. Show-side facts only: what the mixer sees at its own ingest.",
+      "type": "object",
+      "required": [
+        "feed",
+        "owner",
+        "carrier",
+        "state",
+        "arriving",
+        "on_air"
+      ],
+      "properties": {
+        "feed": {
+          "$ref": "#/$defs/short_id"
+        },
+        "owner": {
+          "$ref": "#/$defs/short_id"
+        },
+        "carrier": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/short_id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "enum": [
+            "open",
+            "closed"
+          ]
+        },
+        "arriving": {
+          "enum": [
+            "up",
+            "down",
+            "unknown"
+          ]
+        },
+        "on_air": {
+          "type": "boolean"
+        },
+        "ingest": {
+          "$ref": "#/$defs/endpoint_id"
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "ingest": {
+      "description": "A receiving endpoint named by its non-secret id. Credentials for it never appear here.",
+      "type": "object",
+      "required": [
+        "ingest",
+        "owner",
+        "protocol",
+        "shared"
+      ],
+      "properties": {
+        "ingest": {
+          "$ref": "#/$defs/endpoint_id"
+        },
+        "owner": {
+          "$ref": "#/$defs/short_id"
+        },
+        "protocol": {
+          "enum": [
+            "srt",
+            "srtla",
+            "rtmp",
+            "whip",
+            "rist",
+            "other"
+          ]
+        },
+        "shared": {
+          "type": "boolean"
+        },
+        "feeds": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/short_id"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "hide": {
+      "type": "object",
+      "required": [
+        "kind",
+        "by",
+        "since"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "brb",
+            "privacy",
+            "off_air"
+          ]
+        },
+        "feed": {
+          "$ref": "#/$defs/short_id"
+        },
+        "by": {
+          "$ref": "#/$defs/short_id"
+        },
+        "since": {
+          "$ref": "#/$defs/datetime"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "brb"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "feed"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "feed"
+            ]
+          }
+        }
+      ],
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "reach": {
+      "type": "object",
+      "required": [
+        "via"
+      ],
+      "properties": {
+        "via": {
+          "enum": [
+            "lan",
+            "server"
+          ]
+        },
+        "service": {
+          "type": "string",
+          "pattern": "^_[a-z0-9-]{1,15}\\._tcp$"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^wss://[A-Za-z0-9.-]+(:[0-9]{1,5})?/[A-Za-z0-9/_-]*$",
+          "maxLength": 256
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "via": {
+                "const": "lan"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "service"
+            ],
+            "not": {
+              "required": [
+                "url"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "via": {
+                "const": "server"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "url"
+            ],
+            "not": {
+              "required": [
+                "service"
+              ]
+            }
+          }
+        }
+      ],
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "owner_state": {
+      "description": "One owner's own coordination state. Sent only to that owner's own devices.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "owner",
+        "lease",
+        "version",
+        "seq",
+        "feeds",
+        "devices",
+        "auto_failover"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "owner": {
+          "$ref": "#/$defs/short_id"
+        },
+        "lease": {
+          "$ref": "#/$defs/lease"
+        },
+        "version": {
+          "$ref": "#/$defs/counter"
+        },
+        "seq": {
+          "$ref": "#/$defs/counter"
+        },
+        "feeds": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "required": [
+              "feed",
+              "carrier",
+              "state",
+              "privacy"
+            ],
+            "properties": {
+              "feed": {
+                "$ref": "#/$defs/short_id"
+              },
+              "carrier": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/short_id"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "state": {
+                "enum": [
+                  "open",
+                  "closed"
+                ]
+              },
+              "privacy": {
+                "enum": [
+                  "on",
+                  "off"
+                ]
+              }
+            },
+            "patternProperties": {
+              "^x_[a-z0-9]+_[a-z0-9_]+$": true
+            },
+            "additionalProperties": false
+          }
+        },
+        "devices": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "required": [
+              "member",
+              "source",
+              "kind"
+            ],
+            "properties": {
+              "member": {
+                "$ref": "#/$defs/short_id"
+              },
+              "source": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{4,64}$"
+              },
+              "kind": {
+                "$ref": "#/$defs/device_kind"
+              }
+            },
+            "patternProperties": {
+              "^x_[a-z0-9]+_[a-z0-9_]+$": true
+            },
+            "additionalProperties": false
+          }
+        },
+        "auto_failover": {
+          "type": "boolean"
+        },
+        "grants": {
+          "type": "array",
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/short_id"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "offer": {
+      "type": "object",
+      "required": [
+        "caps",
+        "level",
+        "location"
+      ],
+      "properties": {
+        "caps": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/cap"
+          }
+        },
+        "level": {
+          "$ref": "#/$defs/grant_level"
+        },
+        "location": {
+          "$ref": "#/$defs/location_mode"
+        },
+        "ingests": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/endpoint_id"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "invite": {
+      "description": "The public half of an invite. The capability token itself travels only in the QR code or link and never in a message.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "invite",
+        "issuer",
+        "role",
+        "offers",
+        "uses",
+        "ttl_ms",
+        "issued"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "invite": {
+          "$ref": "#/$defs/short_id"
+        },
+        "issuer": {
+          "$ref": "#/$defs/short_id"
+        },
+        "role": {
+          "enum": [
+            "co_streamer",
+            "guest",
+            "helper"
+          ]
+        },
+        "offers": {
+          "$ref": "#/$defs/offer"
+        },
+        "uses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "ttl_ms": {
+          "type": "integer",
+          "minimum": 60000,
+          "maximum": 86400000
+        },
+        "issued": {
+          "$ref": "#/$defs/datetime"
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "join": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "invite",
+        "proof",
+        "owner",
+        "member",
+        "kind"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "invite": {
+          "$ref": "#/$defs/short_id"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        },
+        "owner": {
+          "$ref": "#/$defs/short_id"
+        },
+        "member": {
+          "$ref": "#/$defs/short_id"
+        },
+        "kind": {
+          "$ref": "#/$defs/device_kind"
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "grant": {
+      "description": "What one owner allows another owner: actions on the issuer's things (caps) and how much of the issuer's status the holder sees (level, location).",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "grant",
+        "invite",
+        "parent",
+        "issuer",
+        "holder",
+        "caps",
+        "level",
+        "location",
+        "ttl_ms",
+        "issued",
+        "renewal",
+        "state"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "grant": {
+          "$ref": "#/$defs/short_id"
+        },
+        "invite": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/short_id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/short_id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "issuer": {
+          "$ref": "#/$defs/short_id"
+        },
+        "holder": {
+          "$ref": "#/$defs/short_id"
+        },
+        "caps": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/cap"
+          }
+        },
+        "level": {
+          "$ref": "#/$defs/grant_level"
+        },
+        "location": {
+          "$ref": "#/$defs/location_mode"
+        },
+        "ingests": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/endpoint_id"
+          }
+        },
+        "ttl_ms": {
+          "type": "integer",
+          "minimum": 60000,
+          "maximum": 600000
+        },
+        "issued": {
+          "$ref": "#/$defs/datetime"
+        },
+        "renewal": {
+          "$ref": "#/$defs/counter"
+        },
+        "state": {
+          "enum": [
+            "active",
+            "revoked",
+            "expired"
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "revoke": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "grant",
+        "by",
+        "reason"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "grant": {
+          "$ref": "#/$defs/short_id"
+        },
+        "by": {
+          "$ref": "#/$defs/short_id"
+        },
+        "reason": {
+          "enum": [
+            "removed",
+            "left",
+            "expired"
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "leave": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "member"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "member": {
+          "$ref": "#/$defs/short_id"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "scope_epoch": {
+      "type": "object",
+      "required": [
+        "scope",
+        "epoch"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hello": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "member",
+        "known"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "member": {
+          "$ref": "#/$defs/short_id"
+        },
+        "known": {
+          "type": "array",
+          "maxItems": 33,
+          "items": {
+            "$ref": "#/$defs/scope_epoch"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "unknown_member": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "member"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "member": {
+          "$ref": "#/$defs/short_id"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "transfer": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "scope",
+        "epoch",
+        "from",
+        "to"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "from": {
+          "$ref": "#/$defs/short_id"
+        },
+        "to": {
+          "$ref": "#/$defs/short_id"
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 120000
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "ready": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "scope",
+        "epoch",
+        "member"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "member": {
+          "$ref": "#/$defs/short_id"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "handed": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "scope",
+        "epoch",
+        "from",
+        "to"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "from": {
+          "$ref": "#/$defs/short_id"
+        },
+        "to": {
+          "$ref": "#/$defs/short_id"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "moved": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "scope",
+        "epoch",
+        "holder"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "holder": {
+          "$ref": "#/$defs/short_id"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "claim": {
+      "description": "Sent to a coordination server only. Carries the lookup key, never the session id.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "lookup",
+        "scope",
+        "epoch",
+        "member",
+        "proof"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "lookup": {
+          "$ref": "#/$defs/lookup"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "member": {
+          "$ref": "#/$defs/short_id"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "claim_result": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "lookup",
+        "scope",
+        "epoch",
+        "holder",
+        "result"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "lookup": {
+          "$ref": "#/$defs/lookup"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "holder": {
+          "$ref": "#/$defs/short_id"
+        },
+        "result": {
+          "enum": [
+            "granted",
+            "refused"
+          ]
+        },
+        "retry_after_ms": {
+          "$ref": "#/$defs/counter"
+        }
+      },
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "order": {
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "scope",
+        "epoch",
+        "against",
+        "action",
+        "by"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "against": {
+          "$ref": "#/$defs/counter"
+        },
+        "action": {
+          "enum": [
+            "brb_on",
+            "brb_off",
+            "off_air",
+            "on_air",
+            "privacy_on",
+            "privacy_off",
+            "cancel_countdown",
+            "go_live",
+            "move_feed",
+            "end_feed",
+            "end"
+          ]
+        },
+        "feed": {
+          "$ref": "#/$defs/short_id"
+        },
+        "to": {
+          "$ref": "#/$defs/short_id"
+        },
+        "by": {
+          "$ref": "#/$defs/short_id"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "off_air",
+                  "on_air",
+                  "privacy_on",
+                  "privacy_off",
+                  "move_feed",
+                  "end_feed"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "feed"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "brb_on",
+                  "brb_off",
+                  "cancel_countdown",
+                  "go_live",
+                  "end"
+                ]
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "feed"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "move_feed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "to"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "to"
+              ]
+            }
+          }
+        }
+      ],
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "status_snapshot": {
+      "description": "A stream-status v0 snapshot, defined by that format. Only its envelope is checked here; validate it with the stream-status tools.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "source",
+        "findings",
+        "checked"
+      ],
+      "properties": {
+        "format": {
+          "const": "stream-status"
+        },
+        "v": {
+          "const": 0
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/short_id"
+            }
+          }
+        },
+        "session_id": {
+          "$ref": "#/$defs/session_id"
+        }
+      }
+    },
+    "feed_minimal": {
+      "type": "object",
+      "required": [
+        "feed",
+        "state",
+        "picture",
+        "worst"
+      ],
+      "properties": {
+        "feed": {
+          "$ref": "#/$defs/short_id"
+        },
+        "state": {
+          "enum": [
+            "up",
+            "down",
+            "unknown"
+          ]
+        },
+        "picture": {
+          "enum": [
+            "camera",
+            "covered",
+            "unknown"
+          ]
+        },
+        "worst": {
+          "enum": [
+            "none",
+            "info",
+            "warning",
+            "critical",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "feed_crew": {
+      "type": "object",
+      "required": [
+        "feed",
+        "state",
+        "picture",
+        "worst",
+        "status"
+      ],
+      "properties": {
+        "feed": true,
+        "state": true,
+        "picture": true,
+        "worst": true,
+        "status": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/status_snapshot"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/$defs/feed_minimal_fields"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "feed_production": {
+      "type": "object",
+      "required": [
+        "feed",
+        "state",
+        "picture",
+        "worst",
+        "status",
+        "carrier_kind",
+        "handover"
+      ],
+      "properties": {
+        "feed": true,
+        "state": true,
+        "picture": true,
+        "worst": true,
+        "status": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/status_snapshot"
+          }
+        },
+        "carrier_kind": {
+          "$ref": "#/$defs/device_kind"
+        },
+        "handover": {
+          "type": "object",
+          "required": [
+            "state"
+          ],
+          "properties": {
+            "state": {
+              "enum": [
+                "none",
+                "pending",
+                "gap"
+              ]
+            },
+            "expected_gap_ms": {
+              "$ref": "#/$defs/counter"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ingest": {
+          "$ref": "#/$defs/endpoint_id"
+        },
+        "media": {
+          "type": "object",
+          "properties": {
+            "codec": {
+              "enum": [
+                "h264",
+                "hevc",
+                "av1",
+                "other"
+              ]
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16384
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16384
+            },
+            "fps": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 240
+            },
+            "bitrate_bps": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/$defs/feed_minimal_fields"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "feed_minimal_fields": {
+      "properties": {
+        "feed": {
+          "$ref": "#/$defs/short_id"
+        },
+        "state": {
+          "enum": [
+            "up",
+            "down",
+            "unknown"
+          ]
+        },
+        "picture": {
+          "enum": [
+            "camera",
+            "covered",
+            "unknown"
+          ]
+        },
+        "worst": {
+          "enum": [
+            "none",
+            "info",
+            "warning",
+            "critical",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": [
+        "mode",
+        "as_of"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "area",
+            "live"
+          ]
+        },
+        "area": {
+          "$ref": "#/$defs/label"
+        },
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "accuracy_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "as_of": {
+          "$ref": "#/$defs/datetime"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "area"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "area"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "lat"
+                  ]
+                },
+                {
+                  "required": [
+                    "lon"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "live"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "lat",
+              "lon"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "projection": {
+      "description": "What one owner shares with one other owner about the owner's own feeds, at the level the owner chose.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "session",
+        "from",
+        "to",
+        "grant",
+        "level",
+        "shares_location",
+        "seq",
+        "valid_for_ms",
+        "feeds"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "generated": {
+          "$ref": "#/$defs/datetime"
+        },
+        "session": {
+          "$ref": "#/$defs/session_id"
+        },
+        "from": {
+          "$ref": "#/$defs/short_id"
+        },
+        "to": {
+          "$ref": "#/$defs/short_id"
+        },
+        "grant": {
+          "$ref": "#/$defs/short_id"
+        },
+        "level": {
+          "$ref": "#/$defs/level"
+        },
+        "shares_location": {
+          "$ref": "#/$defs/location_mode"
+        },
+        "seq": {
+          "$ref": "#/$defs/counter"
+        },
+        "valid_for_ms": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 600000
+        },
+        "feeds": {
+          "type": "array",
+          "maxItems": 16
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "level": {
+                "const": "minimal"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "feeds": {
+                "items": {
+                  "$ref": "#/$defs/feed_minimal"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "level": {
+                "const": "crew"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "feeds": {
+                "items": {
+                  "$ref": "#/$defs/feed_crew"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "level": {
+                "const": "production"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "feeds": {
+                "items": {
+                  "$ref": "#/$defs/feed_production"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "patternProperties": {
+        "^x_[a-z0-9]+_[a-z0-9_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "sealed": {
+      "description": "A message encrypted end to end, as a coordination server or mixer relays it. The relay sees only these fields.",
+      "type": "object",
+      "required": [
+        "format",
+        "v",
+        "type",
+        "lookup",
+        "scope",
+        "epoch",
+        "key_gen",
+        "to",
+        "alg",
+        "nonce",
+        "ct"
+      ],
+      "properties": {
+        "format": true,
+        "v": true,
+        "type": true,
+        "lookup": {
+          "$ref": "#/$defs/lookup"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "epoch": {
+          "$ref": "#/$defs/epoch"
+        },
+        "key_gen": {
+          "$ref": "#/$defs/counter"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^(all|[0-9a-f]{16})$"
+        },
+        "alg": {
+          "const": "chacha20-poly1305"
+        },
+        "nonce": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{16}$"
+        },
+        "ct": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{24,349528}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

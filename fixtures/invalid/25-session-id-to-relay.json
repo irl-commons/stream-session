@@ -1,0 +1,18 @@
+{
+  "description": "A sealed envelope naming the session id: the relay must only see the lookup key.",
+  "error": "additional property 'session'",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "sealed",
+    "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+    "scope": "show",
+    "epoch": 4,
+    "key_gen": 0,
+    "to": "all",
+    "alg": "chacha20-poly1305",
+    "nonce": "q1w2e3r4t5y6u7i8",
+    "ct": "Zm9vYmFyYmF6cXV4cXV1eGNvcmdlZ3JhdWx0",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736"
+  }
+}

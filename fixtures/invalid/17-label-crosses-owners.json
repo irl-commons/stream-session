@@ -1,0 +1,67 @@
+{
+  "description": "A finding subject label (it could be a Wi-Fi name) in a crew projection.",
+  "error": "labels never cross owners",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "projection",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "from": "2b3c4d5e6f708192",
+    "to": "1a2b3c4d5e6f7081",
+    "grant": "e4e4d5d5c6c6b7b7",
+    "level": "crew",
+    "shares_location": "off",
+    "seq": 1,
+    "valid_for_ms": 12000,
+    "feeds": [
+      {
+        "feed": "f2f2e3e3d4d4c5c5",
+        "state": "up",
+        "picture": "camera",
+        "worst": "info",
+        "status": [
+          {
+            "format": "stream-status",
+            "v": 0,
+            "source": {
+              "id": "b1b1c2c2d3d3e4e4",
+              "boot": "7c1e04a2",
+              "seq": 812
+            },
+            "generated": "2026-11-15T14:03:05.120Z",
+            "valid_for_ms": 12000,
+            "live": {
+              "state": "live",
+              "since": "2026-11-15T14:00:00Z"
+            },
+            "findings": [
+              {
+                "code": "link.idle_connected",
+                "subject": {
+                  "kind": "link",
+                  "id": "wwan1",
+                  "label": "Cafe guest"
+                },
+                "status": "active",
+                "severity": "info",
+                "confidence": "measured",
+                "since": "2026-11-15T14:02:41Z",
+                "still_live": true,
+                "evidence": [
+                  {
+                    "key": "link.tx_rate",
+                    "value": 640,
+                    "unit": "bit/s",
+                    "window_ms": 20000
+                  }
+                ]
+              }
+            ],
+            "checked": [],
+            "session_id": "4bf92f3577b34da6a3ce929d0e0e4736"
+          }
+        ]
+      }
+    ]
+  }
+}

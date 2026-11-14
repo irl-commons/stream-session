@@ -1,0 +1,16 @@
+{
+  "description": "What a coordination server sees: a lookup key, the scope and epoch, and ciphertext.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "sealed",
+    "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+    "scope": "show",
+    "epoch": 4,
+    "key_gen": 2,
+    "to": "all",
+    "alg": "chacha20-poly1305",
+    "nonce": "q1w2e3r4t5y6u7i8",
+    "ct": "Zm9vYmFyYmF6cXV4cXV1eGNvcmdlZ3JhdWx0"
+  }
+}

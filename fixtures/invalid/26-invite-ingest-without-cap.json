@@ -1,0 +1,27 @@
+{
+  "description": "An invite names an ingest but gives no ingest.use.",
+  "error": "without ingest.use",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "invite",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "invite": "d9d9c8c8b7b7a6a6",
+    "issuer": "1a2b3c4d5e6f7081",
+    "role": "guest",
+    "offers": {
+      "caps": [
+        "show.view",
+        "feed.contribute"
+      ],
+      "level": "minimal",
+      "location": "off",
+      "ingests": [
+        "kim-guest"
+      ]
+    },
+    "uses": 1,
+    "ttl_ms": 900000,
+    "issued": "2026-11-15T14:00:00Z"
+  }
+}

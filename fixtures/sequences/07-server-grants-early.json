@@ -1,0 +1,247 @@
+{
+  "description": "The server grants 10 s after the last renewal, before the lease and lock-delay ran out.",
+  "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "owners": {
+    "kim": {
+      "id": "1a2b3c4d5e6f7081",
+      "role": "host"
+    }
+  },
+  "members": {
+    "phone": {
+      "id": "a2a2b3b3c4c4d5d5",
+      "owner": "kim",
+      "kind": "phone"
+    },
+    "box": {
+      "id": "a3a3b4b4c5c5d6d6",
+      "owner": "kim",
+      "kind": "box"
+    },
+    "server": {
+      "id": "a5a5b6b6c7c7d8d8",
+      "owner": null,
+      "kind": "server",
+      "serves": [
+        "witness",
+        "relay"
+      ]
+    }
+  },
+  "feeds": {
+    "kim_cam": "f1f1e2e2d3d3c4c4",
+    "ari_cam": "f2f2e3e3d4d4c5c5",
+    "jo_cam": "f3f3e4e4d5d5c6c6"
+  },
+  "expect": {
+    "error": "witness granted the lease before it and the lock-delay ran out"
+  },
+  "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+  "witness": {
+    "valid_for_ms": 15000,
+    "lock_delay_ms": 10000
+  },
+  "steps": [
+    {
+      "t": 0,
+      "from": "box",
+      "to": [
+        "phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "owner_state",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "owner": "1a2b3c4d5e6f7081",
+        "lease": {
+          "scope": "owner:1a2b3c4d5e6f7081",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "privacy": "off"
+          }
+        ],
+        "devices": [
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "source": "k3v9q2x7m1",
+            "kind": "box"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "source": "m4n7v2c8ph",
+            "kind": "phone"
+          }
+        ],
+        "auto_failover": true
+      }
+    },
+    {
+      "t": 0,
+      "from": "box",
+      "to": [
+        "phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "box",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a5a5b6b6c7c7d8d8",
+            "owner": null,
+            "kind": "server",
+            "caps": [],
+            "state": "joined",
+            "serves": [
+              "witness",
+              "relay"
+            ]
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true
+          }
+        ]
+      }
+    },
+    {
+      "t": 0,
+      "from": "box",
+      "to": [
+        "server"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "sealed",
+        "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+        "scope": "show",
+        "epoch": 1,
+        "key_gen": 0,
+        "to": "all",
+        "alg": "chacha20-poly1305",
+        "nonce": "q1w2e3r4t5y6u7i8",
+        "ct": "Zm9vYmFyYmF6cXV4cXV1eGNvcmdlZ3JhdWx0"
+      }
+    },
+    {
+      "t": 10000,
+      "from": "box",
+      "to": [
+        "server"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "sealed",
+        "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+        "scope": "show",
+        "epoch": 1,
+        "key_gen": 0,
+        "to": "all",
+        "alg": "chacha20-poly1305",
+        "nonce": "q1w2e3r4t5y6u7i8",
+        "ct": "Zm9vYmFyYmF6cXV4cXV1eGNvcmdlZ3JhdWx0"
+      }
+    },
+    {
+      "t": 20000,
+      "from": "phone",
+      "to": [
+        "server"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "claim",
+        "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+        "scope": "show",
+        "epoch": 2,
+        "member": "a2a2b3b3c4c4d5d5",
+        "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592"
+      }
+    },
+    {
+      "t": 20010,
+      "from": "server",
+      "to": [
+        "phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "claim_result",
+        "lookup": "9c1d55e0a7b24f0e8f3a6b2c1d0e9f8a",
+        "scope": "show",
+        "epoch": 2,
+        "holder": "a2a2b3b3c4c4d5d5",
+        "result": "granted"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1313 @@
+{
+  "description": "A device left but the host keeps the session key.",
+  "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "owners": {
+    "kim": {
+      "id": "1a2b3c4d5e6f7081",
+      "role": "host"
+    },
+    "ari": {
+      "id": "2b3c4d5e6f708192",
+      "role": "co_streamer"
+    },
+    "jo": {
+      "id": "3c4d5e6f708192a3",
+      "role": "guest"
+    },
+    "mo": {
+      "id": "4d5e6f708192a3b4",
+      "role": "helper"
+    }
+  },
+  "members": {
+    "box": {
+      "id": "a3a3b4b4c5c5d6d6",
+      "owner": "kim",
+      "kind": "box"
+    },
+    "phone": {
+      "id": "a2a2b3b3c4c4d5d5",
+      "owner": "kim",
+      "kind": "phone"
+    },
+    "companion": {
+      "id": "a4a4b5b5c6c6d7d7",
+      "owner": "kim",
+      "kind": "companion"
+    },
+    "ari_box": {
+      "id": "b1b1c2c2d3d3e4e4",
+      "owner": "ari",
+      "kind": "box"
+    },
+    "ari_phone": {
+      "id": "b2b2c3c3d4d4e5e5",
+      "owner": "ari",
+      "kind": "phone"
+    },
+    "jo_phone": {
+      "id": "c1c1d2d2e3e3f4f4",
+      "owner": "jo",
+      "kind": "phone"
+    },
+    "mo_pc": {
+      "id": "d1d1e2e2f3f3a4a4",
+      "owner": "mo",
+      "kind": "pc"
+    }
+  },
+  "feeds": {
+    "kim_cam": "f1f1e2e2d3d3c4c4",
+    "ari_cam": "f2f2e3e3d4d4c5c5",
+    "jo_cam": "f3f3e4e4d5d5c6c6"
+  },
+  "expect": {
+    "error": "kept the old session key"
+  },
+  "steps": [
+    {
+      "t": 0,
+      "from": "box",
+      "to": [
+        "phone",
+        "companion"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "box",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          }
+        ],
+        "ingests": [
+          {
+            "ingest": "kim-srtla",
+            "owner": "1a2b3c4d5e6f7081",
+            "protocol": "srtla",
+            "shared": false
+          }
+        ]
+      }
+    },
+    {
+      "t": 0,
+      "from": "ari_box",
+      "to": [
+        "ari_phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "owner_state",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "owner": "2b3c4d5e6f708192",
+        "lease": {
+          "scope": "owner:2b3c4d5e6f708192",
+          "epoch": 1,
+          "holder": "b1b1c2c2d3d3e4e4",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "feeds": [
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "carrier": "b1b1c2c2d3d3e4e4",
+            "state": "open",
+            "privacy": "off"
+          }
+        ],
+        "devices": [
+          {
+            "member": "b1b1c2c2d3d3e4e4",
+            "source": "r7d2w9b0x4",
+            "kind": "box"
+          },
+          {
+            "member": "b2b2c3c3d4d4e5e5",
+            "source": "p5h8e3n6ar",
+            "kind": "phone"
+          }
+        ],
+        "auto_failover": false,
+        "grants": [
+          "e4e4d5d5c6c6b7b7"
+        ]
+      },
+      "note": "Ari's box coordinates Ari's own gear."
+    },
+    {
+      "t": 1000,
+      "from": "box",
+      "to": [],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "invite",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d8d8c7c7b6b6a5a5",
+        "issuer": "1a2b3c4d5e6f7081",
+        "role": "co_streamer",
+        "offers": {
+          "caps": [
+            "show.view",
+            "feed.contribute",
+            "ingest.use"
+          ],
+          "level": "crew",
+          "location": "off",
+          "ingests": [
+            "kim-srtla"
+          ]
+        },
+        "uses": 2,
+        "ttl_ms": 900000,
+        "issued": "2026-11-15T14:00:00Z"
+      },
+      "note": "One invite for both of Ari's devices."
+    },
+    {
+      "t": 2000,
+      "from": "ari_box",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "join",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d8d8c7c7b6b6a5a5",
+        "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592",
+        "owner": "2b3c4d5e6f708192",
+        "member": "b1b1c2c2d3d3e4e4",
+        "kind": "box",
+        "label": "Ari"
+      }
+    },
+    {
+      "t": 2050,
+      "from": "ari_phone",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "join",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d8d8c7c7b6b6a5a5",
+        "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592",
+        "owner": "2b3c4d5e6f708192",
+        "member": "b2b2c3c3d4d4e5e5",
+        "kind": "phone"
+      }
+    },
+    {
+      "t": 2100,
+      "from": "box",
+      "to": [
+        "ari_box",
+        "ari_phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e3e3d4d4c5c5b6b6",
+        "invite": "d8d8c7c7b6b6a5a5",
+        "parent": null,
+        "issuer": "1a2b3c4d5e6f7081",
+        "holder": "2b3c4d5e6f708192",
+        "caps": [
+          "show.view",
+          "feed.contribute",
+          "ingest.use"
+        ],
+        "level": "crew",
+        "location": "off",
+        "ingests": [
+          "kim-srtla"
+        ],
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      }
+    },
+    {
+      "t": 2200,
+      "from": "ari_box",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e4e4d5d5c6c6b7b7",
+        "invite": null,
+        "parent": null,
+        "issuer": "2b3c4d5e6f708192",
+        "holder": "1a2b3c4d5e6f7081",
+        "caps": [
+          "feed.on_air",
+          "feed.hide",
+          "grant.attenuate"
+        ],
+        "level": "production",
+        "location": "area",
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      },
+      "note": "Ari shares production level and area location with the host, and allows passing narrower rights on."
+    },
+    {
+      "t": 3000,
+      "from": "box",
+      "to": [],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "invite",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d7d7c6c6b5b5a4a4",
+        "issuer": "1a2b3c4d5e6f7081",
+        "role": "helper",
+        "offers": {
+          "caps": [
+            "show.view",
+            "show.hide"
+          ],
+          "level": "minimal",
+          "location": "off"
+        },
+        "uses": 1,
+        "ttl_ms": 900000,
+        "issued": "2026-11-15T14:00:00Z"
+      }
+    },
+    {
+      "t": 4000,
+      "from": "mo_pc",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "join",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d7d7c6c6b5b5a4a4",
+        "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592",
+        "owner": "4d5e6f708192a3b4",
+        "member": "d1d1e2e2f3f3a4a4",
+        "kind": "pc"
+      }
+    },
+    {
+      "t": 4100,
+      "from": "box",
+      "to": [
+        "mo_pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e6e6d7d7c8c8b9b9",
+        "invite": "d7d7c6c6b5b5a4a4",
+        "parent": null,
+        "issuer": "1a2b3c4d5e6f7081",
+        "holder": "4d5e6f708192a3b4",
+        "caps": [
+          "show.view",
+          "show.hide"
+        ],
+        "level": "minimal",
+        "location": "off",
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      }
+    },
+    {
+      "t": 4200,
+      "from": "box",
+      "to": [
+        "mo_pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e7e7d8d8c9c9b0b0",
+        "invite": null,
+        "parent": "e4e4d5d5c6c6b7b7",
+        "issuer": "1a2b3c4d5e6f7081",
+        "holder": "4d5e6f708192a3b4",
+        "caps": [
+          "feed.hide"
+        ],
+        "level": "minimal",
+        "location": "off",
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      },
+      "note": "Kim passes 'may hide Ari's feed' on to a mod, narrowed to minimal."
+    },
+    {
+      "t": 5000,
+      "from": "box",
+      "to": [
+        "phone",
+        "companion",
+        "ari_box",
+        "ari_phone",
+        "mo_pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 2,
+        "seq": 2,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          },
+          {
+            "owner": "2b3c4d5e6f708192",
+            "role": "co_streamer",
+            "state": "joined",
+            "label": "Ari"
+          },
+          {
+            "owner": "4d5e6f708192a3b4",
+            "role": "helper",
+            "state": "joined"
+          }
+        ],
+        "members": [
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "box",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "b1b1c2c2d3d3e4e4",
+            "owner": "2b3c4d5e6f708192",
+            "kind": "box",
+            "caps": [
+              "show.view"
+            ],
+            "state": "joined",
+            "grant": "e3e3d4d4c5c5b6b6"
+          },
+          {
+            "member": "b2b2c3c3d4d4e5e5",
+            "owner": "2b3c4d5e6f708192",
+            "kind": "phone",
+            "caps": [
+              "show.view"
+            ],
+            "state": "joined",
+            "grant": "e3e3d4d4c5c5b6b6"
+          },
+          {
+            "member": "d1d1e2e2f3f3a4a4",
+            "owner": "4d5e6f708192a3b4",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined",
+            "grant": "e6e6d7d7c8c8b9b9"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          },
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "owner": "2b3c4d5e6f708192",
+            "carrier": "b1b1c2c2d3d3e4e4",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          }
+        ],
+        "ingests": [
+          {
+            "ingest": "kim-srtla",
+            "owner": "1a2b3c4d5e6f7081",
+            "protocol": "srtla",
+            "shared": true,
+            "feeds": [
+              "f1f1e2e2d3d3c4c4",
+              "f2f2e3e3d4d4c5c5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "t": 5100,
+      "from": "ari_box",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "projection",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "from": "2b3c4d5e6f708192",
+        "to": "1a2b3c4d5e6f7081",
+        "grant": "e4e4d5d5c6c6b7b7",
+        "level": "production",
+        "shares_location": "area",
+        "seq": 1,
+        "valid_for_ms": 12000,
+        "feeds": [
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "state": "up",
+            "picture": "camera",
+            "worst": "info",
+            "status": [
+              {
+                "format": "stream-status",
+                "v": 0,
+                "source": {
+                  "id": "b1b1c2c2d3d3e4e4",
+                  "boot": "7c1e04a2",
+                  "seq": 812
+                },
+                "generated": "2026-11-15T14:03:05.120Z",
+                "valid_for_ms": 12000,
+                "live": {
+                  "state": "live",
+                  "since": "2026-11-15T14:00:00Z"
+                },
+                "findings": [
+                  {
+                    "code": "link.idle_connected",
+                    "subject": {
+                      "kind": "link",
+                      "id": "wwan1"
+                    },
+                    "status": "active",
+                    "severity": "info",
+                    "confidence": "measured",
+                    "since": "2026-11-15T14:02:41Z",
+                    "still_live": true,
+                    "evidence": [
+                      {
+                        "key": "link.tx_rate",
+                        "value": 640,
+                        "unit": "bit/s",
+                        "window_ms": 20000
+                      }
+                    ]
+                  }
+                ],
+                "checked": [
+                  {
+                    "subject": {
+                      "kind": "capture",
+                      "id": "hdmi"
+                    },
+                    "state": "fine",
+                    "as_of": "2026-11-15T14:03:04Z"
+                  }
+                ],
+                "session_id": "4bf92f3577b34da6a3ce929d0e0e4736"
+              }
+            ],
+            "carrier_kind": "box",
+            "handover": {
+              "state": "none"
+            },
+            "ingest": "kim-srtla",
+            "media": {
+              "codec": "hevc",
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "bitrate_bps": 6000000
+            }
+          }
+        ],
+        "location": {
+          "mode": "area",
+          "area": "Berlin",
+          "as_of": "2026-11-15T14:00:00Z"
+        }
+      }
+    },
+    {
+      "t": 5200,
+      "from": "box",
+      "to": [
+        "ari_box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e5e5d6d6c7c7b8b8",
+        "invite": null,
+        "parent": null,
+        "issuer": "1a2b3c4d5e6f7081",
+        "holder": "2b3c4d5e6f708192",
+        "caps": [],
+        "level": "crew",
+        "location": "off",
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      },
+      "note": "Kim shares crew level back with Ari."
+    },
+    {
+      "t": 5300,
+      "from": "box",
+      "to": [
+        "ari_box",
+        "ari_phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "projection",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "from": "1a2b3c4d5e6f7081",
+        "to": "2b3c4d5e6f708192",
+        "grant": "e5e5d6d6c7c7b8b8",
+        "level": "crew",
+        "shares_location": "off",
+        "seq": 1,
+        "valid_for_ms": 12000,
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "state": "up",
+            "picture": "camera",
+            "worst": "info",
+            "status": [
+              {
+                "format": "stream-status",
+                "v": 0,
+                "source": {
+                  "id": "a3a3b4b4c5c5d6d6",
+                  "boot": "7c1e04a2",
+                  "seq": 812
+                },
+                "generated": "2026-11-15T14:03:05.120Z",
+                "valid_for_ms": 12000,
+                "live": {
+                  "state": "live",
+                  "since": "2026-11-15T14:00:00Z"
+                },
+                "findings": [
+                  {
+                    "code": "link.idle_connected",
+                    "subject": {
+                      "kind": "link",
+                      "id": "wwan1"
+                    },
+                    "status": "active",
+                    "severity": "info",
+                    "confidence": "measured",
+                    "since": "2026-11-15T14:02:41Z",
+                    "still_live": true,
+                    "evidence": [
+                      {
+                        "key": "link.tx_rate",
+                        "value": 640,
+                        "unit": "bit/s",
+                        "window_ms": 20000
+                      }
+                    ]
+                  }
+                ],
+                "checked": [],
+                "session_id": "4bf92f3577b34da6a3ce929d0e0e4736"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "t": 39000,
+      "from": "ari_box",
+      "to": [
+        "ari_phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "transfer",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "owner:2b3c4d5e6f708192",
+        "epoch": 2,
+        "from": "b1b1c2c2d3d3e4e4",
+        "to": "b2b2c3c3d4d4e5e5"
+      }
+    },
+    {
+      "t": 39100,
+      "from": "ari_phone",
+      "to": [
+        "ari_box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "ready",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "owner:2b3c4d5e6f708192",
+        "epoch": 2,
+        "member": "b2b2c3c3d4d4e5e5"
+      }
+    },
+    {
+      "t": 39200,
+      "from": "ari_box",
+      "to": [
+        "ari_phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "handed",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "owner:2b3c4d5e6f708192",
+        "epoch": 2,
+        "from": "b1b1c2c2d3d3e4e4",
+        "to": "b2b2c3c3d4d4e5e5"
+      }
+    },
+    {
+      "t": 39300,
+      "from": "ari_phone",
+      "to": [
+        "ari_box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "owner_state",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "owner": "2b3c4d5e6f708192",
+        "lease": {
+          "scope": "owner:2b3c4d5e6f708192",
+          "epoch": 2,
+          "holder": "b2b2c3c3d4d4e5e5",
+          "claimed": "transfer",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "feeds": [
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "carrier": "b2b2c3c3d4d4e5e5",
+            "state": "open",
+            "privacy": "off"
+          }
+        ],
+        "devices": [
+          {
+            "member": "b1b1c2c2d3d3e4e4",
+            "source": "r7d2w9b0x4",
+            "kind": "box"
+          },
+          {
+            "member": "b2b2c3c3d4d4e5e5",
+            "source": "p5h8e3n6ar",
+            "kind": "phone"
+          }
+        ],
+        "auto_failover": false,
+        "grants": [
+          "e4e4d5d5c6c6b7b7"
+        ]
+      }
+    },
+    {
+      "t": 40000,
+      "from": "ari_box",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "leave",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "member": "b1b1c2c2d3d3e4e4"
+      },
+      "note": "Ari's box leaves the show; Ari's phone carries the feed."
+    },
+    {
+      "t": 40100,
+      "from": "box",
+      "to": [
+        "phone",
+        "companion",
+        "ari_phone",
+        "mo_pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 3,
+        "seq": 3,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          },
+          {
+            "owner": "2b3c4d5e6f708192",
+            "role": "co_streamer",
+            "state": "joined",
+            "label": "Ari"
+          },
+          {
+            "owner": "4d5e6f708192a3b4",
+            "role": "helper",
+            "state": "joined"
+          }
+        ],
+        "members": [
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "box",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "b1b1c2c2d3d3e4e4",
+            "owner": "2b3c4d5e6f708192",
+            "kind": "box",
+            "caps": [
+              "show.view"
+            ],
+            "state": "left",
+            "grant": "e3e3d4d4c5c5b6b6"
+          },
+          {
+            "member": "b2b2c3c3d4d4e5e5",
+            "owner": "2b3c4d5e6f708192",
+            "kind": "phone",
+            "caps": [
+              "show.view"
+            ],
+            "state": "joined",
+            "grant": "e3e3d4d4c5c5b6b6"
+          },
+          {
+            "member": "d1d1e2e2f3f3a4a4",
+            "owner": "4d5e6f708192a3b4",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined",
+            "grant": "e6e6d7d7c8c8b9b9"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          },
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "owner": "2b3c4d5e6f708192",
+            "carrier": "b2b2c3c3d4d4e5e5",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          }
+        ],
+        "ingests": [
+          {
+            "ingest": "kim-srtla",
+            "owner": "1a2b3c4d5e6f7081",
+            "protocol": "srtla",
+            "shared": true,
+            "feeds": [
+              "f1f1e2e2d3d3c4c4",
+              "f2f2e3e3d4d4c5c5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "t": 50000,
+      "from": "box",
+      "to": [],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "invite",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d6d6c5c5b4b4a3a3",
+        "issuer": "1a2b3c4d5e6f7081",
+        "role": "co_streamer",
+        "offers": {
+          "caps": [
+            "show.view",
+            "feed.contribute",
+            "ingest.use"
+          ],
+          "level": "crew",
+          "location": "off",
+          "ingests": [
+            "kim-srtla"
+          ]
+        },
+        "uses": 1,
+        "ttl_ms": 900000,
+        "issued": "2026-11-15T14:00:00Z"
+      }
+    },
+    {
+      "t": 51000,
+      "from": "ari_box",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "join",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d6d6c5c5b4b4a3a3",
+        "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592",
+        "owner": "2b3c4d5e6f708192",
+        "member": "b1b1c2c2d3d3e4e4",
+        "kind": "box"
+      },
+      "note": "The box rejoins with the same member id and the same install id."
+    },
+    {
+      "t": 51100,
+      "from": "ari_phone",
+      "to": [
+        "ari_box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "owner_state",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "owner": "2b3c4d5e6f708192",
+        "lease": {
+          "scope": "owner:2b3c4d5e6f708192",
+          "epoch": 2,
+          "holder": "b2b2c3c3d4d4e5e5",
+          "claimed": "transfer",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 2,
+        "seq": 2,
+        "feeds": [
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "carrier": "b2b2c3c3d4d4e5e5",
+            "state": "open",
+            "privacy": "off"
+          }
+        ],
+        "devices": [
+          {
+            "member": "b1b1c2c2d3d3e4e4",
+            "source": "r7d2w9b0x4",
+            "kind": "box"
+          },
+          {
+            "member": "b2b2c3c3d4d4e5e5",
+            "source": "p5h8e3n6ar",
+            "kind": "phone"
+          }
+        ],
+        "auto_failover": false,
+        "grants": [
+          "e4e4d5d5c6c6b7b7"
+        ]
+      }
+    },
+    {
+      "t": 51200,
+      "from": "box",
+      "to": [
+        "phone",
+        "companion",
+        "ari_box",
+        "ari_phone",
+        "mo_pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 4,
+        "seq": 4,
+        "key_gen": 1,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          },
+          {
+            "owner": "2b3c4d5e6f708192",
+            "role": "co_streamer",
+            "state": "joined",
+            "label": "Ari"
+          },
+          {
+            "owner": "4d5e6f708192a3b4",
+            "role": "helper",
+            "state": "joined"
+          }
+        ],
+        "members": [
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "box",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "b1b1c2c2d3d3e4e4",
+            "owner": "2b3c4d5e6f708192",
+            "kind": "box",
+            "caps": [
+              "show.view"
+            ],
+            "state": "joined",
+            "grant": "e3e3d4d4c5c5b6b6"
+          },
+          {
+            "member": "b2b2c3c3d4d4e5e5",
+            "owner": "2b3c4d5e6f708192",
+            "kind": "phone",
+            "caps": [
+              "show.view"
+            ],
+            "state": "joined",
+            "grant": "e3e3d4d4c5c5b6b6"
+          },
+          {
+            "member": "d1d1e2e2f3f3a4a4",
+            "owner": "4d5e6f708192a3b4",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined",
+            "grant": "e6e6d7d7c8c8b9b9"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          },
+          {
+            "feed": "f2f2e3e3d4d4c5c5",
+            "owner": "2b3c4d5e6f708192",
+            "carrier": "b2b2c3c3d4d4e5e5",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          }
+        ],
+        "ingests": [
+          {
+            "ingest": "kim-srtla",
+            "owner": "1a2b3c4d5e6f7081",
+            "protocol": "srtla",
+            "shared": true,
+            "feeds": [
+              "f1f1e2e2d3d3c4c4",
+              "f2f2e3e3d4d4c5c5"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "t": 51300,
+      "at": "ari_phone",
+      "expect": {
+        "scope": "owner:2b3c4d5e6f708192",
+        "epoch": 2,
+        "holder": "ari_phone",
+        "leads": true
+      }
+    },
+    {
+      "t": 51300,
+      "at": "ari_box",
+      "expect": {
+        "scope": "owner:2b3c4d5e6f708192",
+        "epoch": 2,
+        "holder": "ari_phone",
+        "standby": true
+      }
+    },
+    {
+      "t": 51300,
+      "at": "mo_pc",
+      "expect": {
+        "epoch": 1,
+        "holder": "box",
+        "coordinator_unknown": false
+      }
+    }
+  ]
+}

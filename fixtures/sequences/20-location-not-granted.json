@@ -1,0 +1,364 @@
+{
+  "description": "The guest's app sends an area although the guest left location off.",
+  "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "owners": {
+    "kim": {
+      "id": "1a2b3c4d5e6f7081",
+      "role": "host"
+    },
+    "ari": {
+      "id": "2b3c4d5e6f708192",
+      "role": "co_streamer"
+    },
+    "jo": {
+      "id": "3c4d5e6f708192a3",
+      "role": "guest"
+    },
+    "mo": {
+      "id": "4d5e6f708192a3b4",
+      "role": "helper"
+    }
+  },
+  "members": {
+    "box": {
+      "id": "a3a3b4b4c5c5d6d6",
+      "owner": "kim",
+      "kind": "box"
+    },
+    "phone": {
+      "id": "a2a2b3b3c4c4d5d5",
+      "owner": "kim",
+      "kind": "phone"
+    },
+    "companion": {
+      "id": "a4a4b5b5c6c6d7d7",
+      "owner": "kim",
+      "kind": "companion"
+    },
+    "ari_box": {
+      "id": "b1b1c2c2d3d3e4e4",
+      "owner": "ari",
+      "kind": "box"
+    },
+    "ari_phone": {
+      "id": "b2b2c3c3d4d4e5e5",
+      "owner": "ari",
+      "kind": "phone"
+    },
+    "jo_phone": {
+      "id": "c1c1d2d2e3e3f4f4",
+      "owner": "jo",
+      "kind": "phone"
+    },
+    "mo_pc": {
+      "id": "d1d1e2e2f3f3a4a4",
+      "owner": "mo",
+      "kind": "pc"
+    }
+  },
+  "feeds": {
+    "kim_cam": "f1f1e2e2d3d3c4c4",
+    "ari_cam": "f2f2e3e3d4d4c5c5",
+    "jo_cam": "f3f3e4e4d5d5c6c6"
+  },
+  "expect": {
+    "error": "projection shares location its grant doesn't allow"
+  },
+  "steps": [
+    {
+      "t": 0,
+      "from": "box",
+      "to": [
+        "phone",
+        "companion"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a3a3b4b4c5c5d6d6",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a3a3b4b4c5c5d6d6",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "box",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a3a3b4b4c5c5d6d6",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true,
+            "ingest": "kim-srtla"
+          }
+        ],
+        "ingests": [
+          {
+            "ingest": "kim-srtla",
+            "owner": "1a2b3c4d5e6f7081",
+            "protocol": "srtla",
+            "shared": false
+          }
+        ]
+      }
+    },
+    {
+      "t": 1000,
+      "from": "box",
+      "to": [],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "invite",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d9d9c8c8b7b7a6a6",
+        "issuer": "1a2b3c4d5e6f7081",
+        "role": "guest",
+        "offers": {
+          "caps": [
+            "show.view",
+            "feed.contribute",
+            "ingest.use"
+          ],
+          "level": "minimal",
+          "location": "off",
+          "ingests": [
+            "kim-guest"
+          ]
+        },
+        "uses": 1,
+        "ttl_ms": 900000,
+        "issued": "2026-11-15T14:00:00Z"
+      },
+      "note": "Kim's box shows a QR code; the token is in the code, not in any message."
+    },
+    {
+      "t": 60000,
+      "from": "jo_phone",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "join",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "invite": "d9d9c8c8b7b7a6a6",
+        "proof": "5d41402abc4b2a76b9719d911017c5925d41402abc4b2a76b9719d911017c592",
+        "owner": "3c4d5e6f708192a3",
+        "member": "c1c1d2d2e3e3f4f4",
+        "kind": "phone",
+        "label": "Jo"
+      },
+      "note": "Jo scans it."
+    },
+    {
+      "t": 60100,
+      "from": "box",
+      "to": [
+        "jo_phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e1e1d2d2c3c3b4b4",
+        "invite": "d9d9c8c8b7b7a6a6",
+        "parent": null,
+        "issuer": "1a2b3c4d5e6f7081",
+        "holder": "3c4d5e6f708192a3",
+        "caps": [
+          "show.view",
+          "feed.contribute",
+          "ingest.use"
+        ],
+        "level": "minimal",
+        "location": "off",
+        "ingests": [
+          "kim-guest"
+        ],
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      }
+    },
+    {
+      "t": 60200,
+      "from": "jo_phone",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "grant",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "grant": "e2e2d3d3c4c4b5b5",
+        "invite": null,
+        "parent": null,
+        "issuer": "3c4d5e6f708192a3",
+        "holder": "1a2b3c4d5e6f7081",
+        "caps": [
+          "feed.on_air"
+        ],
+        "level": "production",
+        "location": "off",
+        "ttl_ms": 600000,
+        "issued": "2026-11-15T14:00:00Z",
+        "renewal": 0,
+        "state": "active"
+      }
+    },
+    {
+      "t": 61100,
+      "from": "jo_phone",
+      "to": [
+        "box"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "projection",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "from": "3c4d5e6f708192a3",
+        "to": "1a2b3c4d5e6f7081",
+        "grant": "e2e2d3d3c4c4b5b5",
+        "level": "production",
+        "shares_location": "area",
+        "seq": 1,
+        "valid_for_ms": 12000,
+        "feeds": [
+          {
+            "feed": "f3f3e4e4d5d5c6c6",
+            "state": "up",
+            "picture": "camera",
+            "worst": "info",
+            "status": [
+              {
+                "format": "stream-status",
+                "v": 0,
+                "source": {
+                  "id": "c1c1d2d2e3e3f4f4",
+                  "boot": "7c1e04a2",
+                  "seq": 812
+                },
+                "generated": "2026-11-15T14:03:05.120Z",
+                "valid_for_ms": 12000,
+                "live": {
+                  "state": "live",
+                  "since": "2026-11-15T14:00:00Z"
+                },
+                "findings": [
+                  {
+                    "code": "link.idle_connected",
+                    "subject": {
+                      "kind": "link",
+                      "id": "wwan1"
+                    },
+                    "status": "active",
+                    "severity": "info",
+                    "confidence": "measured",
+                    "since": "2026-11-15T14:02:41Z",
+                    "still_live": true,
+                    "evidence": [
+                      {
+                        "key": "link.tx_rate",
+                        "value": 640,
+                        "unit": "bit/s",
+                        "window_ms": 20000
+                      }
+                    ]
+                  }
+                ],
+                "checked": [
+                  {
+                    "subject": {
+                      "kind": "capture",
+                      "id": "hdmi"
+                    },
+                    "state": "fine",
+                    "as_of": "2026-11-15T14:03:04Z"
+                  }
+                ],
+                "session_id": "4bf92f3577b34da6a3ce929d0e0e4736"
+              }
+            ],
+            "carrier_kind": "phone",
+            "handover": {
+              "state": "none"
+            },
+            "ingest": "kim-guest",
+            "media": {
+              "codec": "hevc",
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "bitrate_bps": 6000000
+            }
+          }
+        ],
+        "location": {
+          "mode": "area",
+          "area": "Berlin",
+          "as_of": "2026-11-15T14:00:00Z"
+        }
+      }
+    }
+  ]
+}

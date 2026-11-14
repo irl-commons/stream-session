@@ -1,0 +1,28 @@
+{
+  "description": "The grant Kim's box issues once Jo joined.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "grant",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "grant": "e1e1d2d2c3c3b4b4",
+    "invite": "d9d9c8c8b7b7a6a6",
+    "parent": null,
+    "issuer": "1a2b3c4d5e6f7081",
+    "holder": "3c4d5e6f708192a3",
+    "caps": [
+      "show.view",
+      "feed.contribute",
+      "ingest.use"
+    ],
+    "level": "minimal",
+    "location": "off",
+    "ingests": [
+      "kim-guest"
+    ],
+    "ttl_ms": 600000,
+    "issued": "2026-11-15T14:00:00Z",
+    "renewal": 0,
+    "state": "active"
+  }
+}

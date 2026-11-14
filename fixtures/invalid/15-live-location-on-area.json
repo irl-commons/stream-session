@@ -1,0 +1,31 @@
+{
+  "description": "Live coordinates when the owner chose area only.",
+  "error": "more than shares_location allows",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "projection",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "from": "2b3c4d5e6f708192",
+    "to": "1a2b3c4d5e6f7081",
+    "grant": "e4e4d5d5c6c6b7b7",
+    "level": "minimal",
+    "shares_location": "area",
+    "seq": 1,
+    "valid_for_ms": 12000,
+    "feeds": [
+      {
+        "feed": "f2f2e3e3d4d4c5c5",
+        "state": "up",
+        "picture": "camera",
+        "worst": "info"
+      }
+    ],
+    "location": {
+      "mode": "live",
+      "lat": 52.52,
+      "lon": 13.405,
+      "as_of": "2026-11-15T14:00:00Z"
+    }
+  }
+}

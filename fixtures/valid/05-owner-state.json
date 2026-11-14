@@ -1,0 +1,44 @@
+{
+  "description": "Ari's own coordination state, sent only to Ari's devices. Privacy is on for Ari's camera.",
+  "message": {
+    "format": "stream-session",
+    "v": 0,
+    "type": "owner_state",
+    "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+    "owner": "2b3c4d5e6f708192",
+    "lease": {
+      "scope": "owner:2b3c4d5e6f708192",
+      "epoch": 2,
+      "holder": "b1b1c2c2d3d3e4e4",
+      "claimed": "transfer",
+      "valid_for_ms": 15000,
+      "lock_delay_ms": 10000
+    },
+    "version": 9,
+    "seq": 9,
+    "feeds": [
+      {
+        "feed": "f2f2e3e3d4d4c5c5",
+        "carrier": "b1b1c2c2d3d3e4e4",
+        "state": "open",
+        "privacy": "on"
+      }
+    ],
+    "devices": [
+      {
+        "member": "b1b1c2c2d3d3e4e4",
+        "source": "r7d2w9b0x4",
+        "kind": "box"
+      },
+      {
+        "member": "b2b2c3c3d4d4e5e5",
+        "source": "p5h8e3n6ar",
+        "kind": "phone"
+      }
+    ],
+    "auto_failover": true,
+    "grants": [
+      "e4e4d5d5c6c6b7b7"
+    ]
+  }
+}
