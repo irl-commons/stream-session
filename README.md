@@ -25,6 +25,8 @@ and nothing else changes.
 
 **Status: v0, a draft.** Nothing here has run on real devices yet; the parts
 that need two people's gear in one show are marked. MIT licensed.
+Started by the OpenStreamBox Initiative, and open to anyone who builds IRL
+streaming tools.
 
 **New here?** [Join a session](docs/getting-started.md) in about ten minutes,
 then read the [worked examples](docs/examples.md) and the [FAQ](docs/faq.md).
