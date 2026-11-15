@@ -8,6 +8,9 @@ draft can change field names. Each such change is listed here.
 - Docs for implementers: [Join a session](getting-started.md),
   [worked examples](examples.md) with a trace that CI checks, and an
   [FAQ](faq.md). No change to the format.
+- The README names the OpenStreamBox Initiative, which started the format.
+- Spec 10.9: the last two rows of "Who coordinates what" say "that owner"
+  instead of "me". Same meaning.
 
 ## v0 draft 1 (November 2026)
 

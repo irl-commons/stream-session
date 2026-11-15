@@ -88,5 +88,5 @@ additive only, and the rules for unknown values keep older devices safe.
 ## Where do I ask, or say what's missing?
 
 In [Discussions](https://github.com/openstreambox/stream-session/discussions).
-If you'd rather not post in public, write to hello@openstreambox.org or
-find me [on Discord](https://discord.gg/3B9b9n9N6).
+If you'd rather not post in public, write to hello@openstreambox.org or ask
+[on the OpenStreamBox Discord](https://discord.gg/3B9b9n9N6).
