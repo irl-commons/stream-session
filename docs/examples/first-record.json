@@ -1,0 +1,74 @@
+{
+  "format": "stream-session",
+  "v": 0,
+  "type": "record",
+  "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "lease": {
+    "scope": "show",
+    "epoch": 1,
+    "holder": "a1a1b2b2c3c3d4d4",
+    "claimed": "start",
+    "valid_for_ms": 15000,
+    "lock_delay_ms": 10000
+  },
+  "version": 1,
+  "seq": 1,
+  "key_gen": 0,
+  "output": {
+    "state": "live",
+    "showing": "program",
+    "since": "2026-11-15T14:00:00Z"
+  },
+  "owners": [
+    {
+      "owner": "1a2b3c4d5e6f7081",
+      "role": "host",
+      "state": "joined",
+      "label": "Kim"
+    }
+  ],
+  "members": [
+    {
+      "member": "a1a1b2b2c3c3d4d4",
+      "owner": "1a2b3c4d5e6f7081",
+      "kind": "pc",
+      "caps": [
+        "show.view",
+        "show.hide",
+        "show.mix"
+      ],
+      "state": "joined"
+    },
+    {
+      "member": "a2a2b3b3c4c4d5d5",
+      "owner": "1a2b3c4d5e6f7081",
+      "kind": "phone",
+      "caps": [
+        "show.view",
+        "show.hide",
+        "show.mix"
+      ],
+      "state": "joined"
+    },
+    {
+      "member": "a4a4b5b5c6c6d7d7",
+      "owner": "1a2b3c4d5e6f7081",
+      "kind": "companion",
+      "caps": [
+        "show.view",
+        "show.hide"
+      ],
+      "state": "joined"
+    }
+  ],
+  "feeds": [
+    {
+      "feed": "f1f1e2e2d3d3c4c4",
+      "owner": "1a2b3c4d5e6f7081",
+      "carrier": "a1a1b2b2c3c3d4d4",
+      "state": "open",
+      "arriving": "up",
+      "on_air": true
+    }
+  ]
+}

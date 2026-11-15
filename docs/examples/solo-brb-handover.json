@@ -1,0 +1,601 @@
+{
+  "description": "A solo show: the PC starts it, a mod hits BRB from the companion app, the show moves to the phone, and the BRB stays on. An order from the old epoch to end BRB is refused.",
+  "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "owners": {
+    "kim": {
+      "id": "1a2b3c4d5e6f7081",
+      "role": "host"
+    }
+  },
+  "members": {
+    "pc": {
+      "id": "a1a1b2b2c3c3d4d4",
+      "owner": "kim",
+      "kind": "pc"
+    },
+    "phone": {
+      "id": "a2a2b3b3c4c4d5d5",
+      "owner": "kim",
+      "kind": "phone"
+    },
+    "companion": {
+      "id": "a4a4b5b5c6c6d7d7",
+      "owner": "kim",
+      "kind": "companion"
+    }
+  },
+  "feeds": {
+    "kim_cam": "f1f1e2e2d3d3c4c4"
+  },
+  "expect": "ok",
+  "steps": [
+    {
+      "t": 0,
+      "from": "pc",
+      "to": "all",
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a1a1b2b2c3c3d4d4",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a1a1b2b2c3c3d4d4",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a1a1b2b2c3c3d4d4",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true
+          }
+        ]
+      },
+      "note": "Kim goes live from the PC. It starts the show: epoch 1, claimed by start."
+    },
+    {
+      "t": 100,
+      "at": "phone",
+      "expect": {
+        "epoch": 1,
+        "holder": "pc",
+        "coordinator_unknown": false
+      }
+    },
+    {
+      "t": 5000,
+      "from": "pc",
+      "to": "all",
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a1a1b2b2c3c3d4d4",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 2,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "program",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a1a1b2b2c3c3d4d4",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a1a1b2b2c3c3d4d4",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true
+          }
+        ]
+      },
+      "note": "Nothing changed. The PC sends the whole record again, which renews its lease."
+    },
+    {
+      "t": 20000,
+      "from": "companion",
+      "to": [
+        "pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "order",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "show",
+        "epoch": 1,
+        "against": 1,
+        "action": "brb_on",
+        "by": "a4a4b5b5c6c6d7d7"
+      },
+      "note": "A mod on the companion app hits BRB."
+    },
+    {
+      "t": 20010,
+      "at": "pc",
+      "expect": {
+        "applied": [
+          "brb_on"
+        ]
+      }
+    },
+    {
+      "t": 20100,
+      "from": "pc",
+      "to": "all",
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 1,
+          "holder": "a1a1b2b2c3c3d4d4",
+          "claimed": "start",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 2,
+        "seq": 3,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "cover",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a1a1b2b2c3c3d4d4",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a1a1b2b2c3c3d4d4",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true
+          }
+        ],
+        "hides": [
+          {
+            "kind": "brb",
+            "by": "a4a4b5b5c6c6d7d7",
+            "since": "2026-11-15T14:00:20Z"
+          }
+        ]
+      },
+      "note": "The next record shows the hide. Output stays live, showing a cover."
+    },
+    {
+      "t": 20200,
+      "at": "companion",
+      "expect": {
+        "hides": [
+          "brb"
+        ]
+      }
+    },
+    {
+      "t": 30000,
+      "from": "pc",
+      "to": [
+        "phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "transfer",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "show",
+        "epoch": 2,
+        "from": "a1a1b2b2c3c3d4d4",
+        "to": "a2a2b3b3c4c4d5d5"
+      },
+      "note": "Kim taps Move to phone."
+    },
+    {
+      "t": 33000,
+      "from": "phone",
+      "to": [
+        "pc"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "ready",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "show",
+        "epoch": 2,
+        "member": "a2a2b3b3c4c4d5d5"
+      },
+      "note": "The phone's own stream is healthy."
+    },
+    {
+      "t": 33100,
+      "from": "pc",
+      "to": [
+        "phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "handed",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "show",
+        "epoch": 2,
+        "from": "a1a1b2b2c3c3d4d4",
+        "to": "a2a2b3b3c4c4d5d5"
+      }
+    },
+    {
+      "t": 33200,
+      "from": "phone",
+      "to": "all",
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 2,
+          "holder": "a2a2b3b3c4c4d5d5",
+          "claimed": "transfer",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 1,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "cover",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a1a1b2b2c3c3d4d4",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a2a2b3b3c4c4d5d5",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true
+          }
+        ],
+        "hides": [
+          {
+            "kind": "brb",
+            "by": "a4a4b5b5c6c6d7d7",
+            "since": "2026-11-15T14:00:20Z"
+          }
+        ]
+      },
+      "note": "The phone's first record: epoch 2, and the BRB is still in force."
+    },
+    {
+      "t": 33300,
+      "at": "pc",
+      "expect": {
+        "epoch": 2,
+        "holder": "phone",
+        "leads": false,
+        "standby": true
+      }
+    },
+    {
+      "t": 33300,
+      "at": "companion",
+      "expect": {
+        "epoch": 2,
+        "holder": "phone",
+        "hides": [
+          "brb"
+        ]
+      }
+    },
+    {
+      "t": 40000,
+      "from": "pc",
+      "to": [
+        "phone"
+      ],
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "order",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "scope": "show",
+        "epoch": 1,
+        "against": 2,
+        "action": "brb_off",
+        "by": "a1a1b2b2c3c3d4d4"
+      },
+      "note": "The PC still shows the old picture and tries to end BRB. That's showing more, from an old epoch."
+    },
+    {
+      "t": 40010,
+      "at": "phone",
+      "expect": {
+        "refused": [
+          "brb_off:stale"
+        ]
+      }
+    },
+    {
+      "t": 45000,
+      "from": "phone",
+      "to": "all",
+      "msg": {
+        "format": "stream-session",
+        "v": 0,
+        "type": "record",
+        "session": "4bf92f3577b34da6a3ce929d0e0e4736",
+        "lease": {
+          "scope": "show",
+          "epoch": 2,
+          "holder": "a2a2b3b3c4c4d5d5",
+          "claimed": "transfer",
+          "valid_for_ms": 15000,
+          "lock_delay_ms": 10000
+        },
+        "version": 1,
+        "seq": 2,
+        "key_gen": 0,
+        "output": {
+          "state": "live",
+          "showing": "cover",
+          "since": "2026-11-15T14:00:00Z"
+        },
+        "owners": [
+          {
+            "owner": "1a2b3c4d5e6f7081",
+            "role": "host",
+            "state": "joined",
+            "label": "Kim"
+          }
+        ],
+        "members": [
+          {
+            "member": "a1a1b2b2c3c3d4d4",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "pc",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a2a2b3b3c4c4d5d5",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "phone",
+            "caps": [
+              "show.view",
+              "show.hide",
+              "show.mix"
+            ],
+            "state": "joined"
+          },
+          {
+            "member": "a4a4b5b5c6c6d7d7",
+            "owner": "1a2b3c4d5e6f7081",
+            "kind": "companion",
+            "caps": [
+              "show.view",
+              "show.hide"
+            ],
+            "state": "joined"
+          }
+        ],
+        "feeds": [
+          {
+            "feed": "f1f1e2e2d3d3c4c4",
+            "owner": "1a2b3c4d5e6f7081",
+            "carrier": "a2a2b3b3c4c4d5d5",
+            "state": "open",
+            "arriving": "up",
+            "on_air": true
+          }
+        ],
+        "hides": [
+          {
+            "kind": "brb",
+            "by": "a4a4b5b5c6c6d7d7",
+            "since": "2026-11-15T14:00:20Z"
+          }
+        ]
+      },
+      "note": "Nothing changed: BRB stays on until someone ends it in epoch 2."
+    }
+  ]
+}

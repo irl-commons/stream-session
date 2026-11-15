@@ -26,6 +26,13 @@ and nothing else changes.
 **Status: v0, a draft.** Nothing here has run on real devices yet; the parts
 that need two people's gear in one show are marked. MIT licensed.
 
+**New here?** [Join a session](docs/getting-started.md) in about ten minutes,
+then read the [worked examples](docs/examples.md) and the [FAQ](docs/faq.md).
+What changed is in the [changelog](docs/CHANGELOG.md). Questions and doubts
+go to [Discussions](https://github.com/openstreambox/stream-session/discussions).
+How this fits with the other open standards for IRL streaming:
+[openstreambox.org/open-standards.html](https://openstreambox.org/open-standards.html).
+
 ## A day in a collab
 
 Kim and Ari stream together on Kim's channel.
@@ -78,6 +85,7 @@ switcher like NOALBS could be one of the mixer's members.
 
 | Path | What it is |
 | --- | --- |
+| [`docs/`](docs/getting-started.md) | A ten-minute guide, worked examples, an FAQ and the changelog |
 | [`spec/v0.md`](spec/v0.md) | The format: ids, the session record, leases and epochs, handover and takeover, hides, owners and grants, sharing levels, the optional server |
 | [`schema/stream-session.v0.schema.json`](schema/stream-session.v0.schema.json) | JSON Schema (2020-12) for every message |
 | [`fixtures/`](fixtures/README.md) | Valid messages, invalid ones with one mistake each, and sequences: handover, takeover, split brain, guests, revoking |
@@ -93,6 +101,8 @@ python3 tools/stream_session.py sequence my-trace.json
 python3 tools/stream_session.py test               # every fixture
 python3 -m unittest discover -s tests
 ```
+
+[Join a session](docs/getting-started.md) walks through a first show step by step.
 
 `validate` checks one message: the schema, the rules the schema can't
 express, and a scan for anything that must never appear (stream keys,
