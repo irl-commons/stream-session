@@ -20,6 +20,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Fixtures, standard library only
         run: python tools/stream_session.py test
+      - name: Docs examples
+        run: |
+          python tools/stream_session.py validate docs/examples/first-record.json
+          python tools/stream_session.py sequence docs/examples/solo-brb-handover.json
       - name: Tests, standard library only
         run: python -m unittest discover -s tests
       - name: Schema is valid JSON
