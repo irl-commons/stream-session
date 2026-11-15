@@ -98,4 +98,4 @@ additive only, and the rules for unknown values keep older devices safe.
 
 In [Discussions](https://github.com/irl-commons/stream-session/discussions).
 If you'd rather not post in public, write to hello@irlcommons.org or ask
-[on Discord](https://discord.gg/3B9b9n9N6).
+[on Discord](https://discord.gg/KChVwU6fjk).
