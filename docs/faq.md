@@ -31,7 +31,7 @@ from both sides stays until someone ends it in the current epoch.
 
 ## How is this different from stream-status?
 
-[stream-status](https://github.com/openstreambox/stream-status) says what's
+[stream-status](https://github.com/irl-commons/stream-status) says what's
 wrong with a stream and whether it's still live. stream-session says which
 show those snapshots belong to, who is in charge, and who may see what. A
 device in a show keeps sending stream-status and tags each snapshot with the
@@ -79,6 +79,15 @@ NOALBS switches OBS scenes from what arrives at the receiver.
 stream-session says which show those feeds belong to and who decides what
 goes on air. A switcher like NOALBS could be one of the show's members.
 
+## Why did the schema's `$id` change?
+
+The first v0 draft used `https://github.com/openstreambox/stream-session/schema/stream-session.v0.schema.json`
+as its `$id`. That was a name, not an address you could open, and it tied the
+format to one GitHub organisation. Since the move to IRL Commons the `$id` is
+`https://irlcommons.org/schemas/stream-session/v0.json`, an address on
+irlcommons.org that will serve the schema file. If you pinned the old identifier during its one day, replace it; the
+schema is otherwise the same.
+
 ## What happens when v1 comes?
 
 Until v1, fields can still change between drafts. Each change gets a line in
@@ -87,6 +96,6 @@ additive only, and the rules for unknown values keep older devices safe.
 
 ## Where do I ask, or say what's missing?
 
-In [Discussions](https://github.com/openstreambox/stream-session/discussions).
-If you'd rather not post in public, write to hello@openstreambox.org or ask
-[on the OpenStreamBox Discord](https://discord.gg/3B9b9n9N6).
+In [Discussions](https://github.com/irl-commons/stream-session/discussions).
+If you'd rather not post in public, write to hello@irlcommons.org or ask
+[on Discord](https://discord.gg/3B9b9n9N6).

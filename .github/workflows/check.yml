@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: openstreambox/stream-status
+          repository: irl-commons/stream-status
           path: stream-status
       - uses: actions/setup-python@v5
         with:
