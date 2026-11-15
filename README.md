@@ -25,15 +25,15 @@ and nothing else changes.
 
 **Status: v0, a draft.** Nothing here has run on real devices yet; the parts
 that need two people's gear in one show are marked. MIT licensed.
-Started by the OpenStreamBox Initiative, and open to anyone who builds IRL
+Started by IRL Commons, and open to anyone who builds IRL
 streaming tools.
 
 **New here?** [Join a session](docs/getting-started.md) in about ten minutes,
 then read the [worked examples](docs/examples.md) and the [FAQ](docs/faq.md).
 What changed is in the [changelog](docs/CHANGELOG.md). Questions and doubts
-go to [Discussions](https://github.com/openstreambox/stream-session/discussions).
+go to [Discussions](https://github.com/irl-commons/stream-session/discussions).
 How this fits with the other open standards for IRL streaming:
-[openstreambox.org/open-standards.html](https://openstreambox.org/open-standards.html).
+[irlcommons.org/open-standards.html](https://irlcommons.org/open-standards.html).
 
 ## A day in a collab
 
@@ -65,7 +65,7 @@ Kim and Ari stream together on Kim's channel.
 
 ## How it fits with stream-status and NOALBS
 
-[stream-status](https://github.com/openstreambox/stream-status) answers
+[stream-status](https://github.com/irl-commons/stream-status) answers
 "what's wrong with this stream, where, and is it still live?" It's a snapshot
 of findings that each device publishes. stream-session doesn't repeat any of
 it. It answers the questions around it: which show do these snapshots belong

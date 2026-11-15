@@ -16,7 +16,7 @@ section 10).
 ## 1. Get the tools
 
 ```sh
-git clone https://github.com/openstreambox/stream-session
+git clone https://github.com/irl-commons/stream-session
 cd stream-session
 python3 tools/stream_session.py test
 ```
@@ -106,7 +106,7 @@ no moment when nobody, or two devices, are in charge.
 
 ## 7. Tag your stream-status snapshots
 
-If your device also sends [stream-status](https://github.com/openstreambox/stream-status)
+If your device also sends [stream-status](https://github.com/irl-commons/stream-status)
 snapshots, set their `session_id` to the show's `session`. A reader can
 then group the snapshots of one show from several devices.
 
@@ -143,4 +143,4 @@ The [worked examples](examples.md) walk through these with the fixtures.
 - [Worked examples](examples.md)
 - [FAQ](faq.md)
 - [The full spec](../spec/v0.md)
-- Questions or doubts: [Discussions](https://github.com/openstreambox/stream-session/discussions).
+- Questions or doubts: [Discussions](https://github.com/irl-commons/stream-session/discussions).
