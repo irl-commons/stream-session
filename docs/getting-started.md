@@ -138,6 +138,23 @@ before the new device was ready".
 
 The [worked examples](examples.md) walk through these with the fixtures.
 
+## The tools
+
+```sh
+python3 tools/stream_session.py validate my-record.json
+python3 tools/stream_session.py sequence my-trace.json
+python3 tools/stream_session.py test               # every fixture
+python3 -m unittest discover -s tests
+```
+
+`validate` checks one message: the schema, the rules the schema can't
+express, and a scan for anything that must never appear (stream keys,
+tokens, IP addresses, location outside a projection). `sequence` plays a
+trace of messages between devices and checks that everyone followed the
+rules: nobody took over without a handover, a tap or a witness; nobody kept
+giving orders after seeing a newer epoch; no hide got lost; nobody saw more
+than they were granted.
+
 ## Next
 
 - [Worked examples](examples.md)

@@ -1,39 +1,16 @@
 # stream-session
 
-A small open format that lets every device in a live show agree on which show
-it is, who is in it, who decides right now, and what each person lets the
-others see.
+An open format so the devices in a live show can work together: which show it is, who is in it, who decides right now, and what each person lets the others see.
 
-A live stream rarely runs on one device anymore. You start on the PC at
-home, walk out with the phone, and end the night on a backpack box. A friend
-joins and your two streams become one show. A guest hops on from their phone
-for ten minutes. A mod on another continent hits BRB when a stranger walks
-into the shot.
+**Draft (v0).** Not tested on real devices yet; the parts that need two people's gear are listed below. MIT licensed.
 
-Today each of those pieces keeps its own idea of what is going on. The phone
-doesn't know the box took over. A remote app still sends orders to the
-device that stopped streaming five minutes ago. Sharing a feed with a friend
-means sharing a stream key and hoping nobody sees more than they should.
-And when two devices both think they're in charge, nothing decides which
-one is right.
+## Why
 
-stream-session gives all of them one shared record per show, a counter that
-goes up every time the device in charge changes, and a few rules everybody
-follows. It works with **no server at all**. If you want automatic takeover
-or devices in different places, anyone can run a small coordination server,
-and nothing else changes.
+You start on the PC at home, walk out with the phone, and end the night on a backpack box. A friend joins and your two streams become one show. A guest joins from their phone for ten minutes. A mod on another continent hits BRB when a stranger walks into the shot.
 
-**Status: v0, a draft.** Nothing here has run on real devices yet; the parts
-that need two people's gear in one show are marked. MIT licensed.
-Started by IRL Commons, and open to anyone who builds IRL
-streaming tools.
+Today each device keeps its own idea of what is going on. The phone doesn't know the box took over. A remote app still sends orders to the device that stopped streaming five minutes ago. Sharing a feed with a friend means sharing a stream key. When two devices both think they're in charge, nothing decides which one is right.
 
-**New here?** [Join a session](docs/getting-started.md) in about ten minutes,
-then read the [worked examples](docs/examples.md) and the [FAQ](docs/faq.md).
-What changed is in the [changelog](docs/CHANGELOG.md). Questions and doubts
-go to [Discussions](https://github.com/irl-commons/stream-session/discussions).
-How this fits with the other open standards for IRL streaming:
-[irlcommons.org/open-standards.html](https://irlcommons.org/open-standards.html).
+stream-session gives them one shared record per show, a counter (the epoch) that goes up each time the device in charge changes, and a few rules. It works without a server. For automatic takeover or devices in different places, anyone can run a small coordination server, and nothing else changes.
 
 ## A day in a collab
 
@@ -63,57 +40,6 @@ Kim and Ari stream together on Kim's channel.
    devices stop getting updates. What Ari already saw can't be taken back,
    and the apps say so.
 
-## How it fits with stream-status and NOALBS
-
-[stream-status](https://github.com/irl-commons/stream-status) answers
-"what's wrong with this stream, where, and is it still live?" It's a snapshot
-of findings that each device publishes. stream-session doesn't repeat any of
-it. It answers the questions around it: which show do these snapshots belong
-to, who is in charge, and who may see which snapshot. Each device keeps
-publishing stream-status, tagged with the show id. When an owner shares with
-another owner, the shared part is a stream-status snapshot, cut down to the
-level that owner chose.
-
-[NOALBS](https://github.com/NOALBS/nginx-obs-automatic-low-bitrate-switching)
-([docs](https://docs.noalbs.com)) is the open-source tool many IRL streamers
-run to switch OBS scenes when the bitrate drops. It reads the stats of the
-common ingest servers and is the closest thing the IRL scene has to a shared
-contract today. stream-session is meant to sit next to it, not replace it:
-NOALBS switches scenes from what arrives at the receiver; stream-session
-says which show those feeds belong to and who decides what goes on air. A
-switcher like NOALBS could be one of the mixer's members.
-
-## What's here
-
-| Path | What it is |
-| --- | --- |
-| [`docs/`](docs/getting-started.md) | A ten-minute guide, worked examples, an FAQ and the changelog |
-| [`spec/v0.md`](spec/v0.md) | The format: ids, the session record, leases and epochs, handover and takeover, hides, owners and grants, sharing levels, the optional server |
-| [`schema/stream-session.v0.schema.json`](schema/stream-session.v0.schema.json) | JSON Schema (2020-12) for every message |
-| [`fixtures/`](fixtures/README.md) | Valid messages, invalid ones with one mistake each, and sequences: handover, takeover, split brain, guests, revoking |
-| [`tools/stream_session.py`](tools/stream_session.py) | Validator and sequence checker. Python 3.10+, standard library only |
-| [`tests/`](tests/test_stream_session.py) | Tests for the tool |
-| [`SECURITY.md`](SECURITY.md) | How to report a security problem |
-
-## Try it
-
-```sh
-python3 tools/stream_session.py validate my-record.json
-python3 tools/stream_session.py sequence my-trace.json
-python3 tools/stream_session.py test               # every fixture
-python3 -m unittest discover -s tests
-```
-
-[Join a session](docs/getting-started.md) walks through a first show step by step.
-
-`validate` checks one message: the schema, the rules the schema can't
-express, and a scan for anything that must never appear (stream keys,
-tokens, IP addresses, location outside a projection). `sequence` plays a
-trace of messages between devices and checks that everyone followed the
-rules: nobody took over without a handover, a tap or a witness; nobody kept
-giving orders after seeing a newer epoch; no hide got lost; nobody saw more
-than they were granted.
-
 ## The rules in one screen
 
 - **Ids are random.** Never a serial number, an account, a handle or an
@@ -135,6 +61,12 @@ than they were granted.
 - **Secrets never travel.** No stream key, token or password appears in any
   message, at any level.
 
+## Works with stream-status and NOALBS
+
+[stream-status](https://github.com/irl-commons/stream-status) says what's wrong with a stream. stream-session says which show those snapshots belong to, who is in charge, and who may see which snapshot. Each device keeps publishing stream-status, tagged with the show id. What one owner shares with another is a stream-status snapshot, cut down to the level they chose.
+
+[NOALBS](https://github.com/NOALBS/nginx-obs-automatic-low-bitrate-switching) switches OBS scenes from what arrives at the receiver. stream-session says which show those feeds belong to and who decides what goes on air. A switcher like NOALBS could take part in a show as its mixer.
+
 ## What still needs a real test
 
 The spec lists ten bench tests (section 19). The ones that need two people's
@@ -143,14 +75,20 @@ on one shared ingest with different sharing levels, hiding across owners,
 and a coordination server between two owners on different mobile networks.
 Until those have run, v0 stays a draft.
 
-## Prior art
+## Where to start
 
-Borrowed on purpose, and credited in the spec: stream-status and NOALBS;
-Raft's terms and stepping down; Chubby's lock-delay and fencing; etcd and
-NATS leases; NMOS IS-04 and IS-07 heartbeats; OAuth scopes, Biscuit and
-macaroons for narrowable rights; LiveKit's short-lived grants; IRLToolkit's
-two-sided ingest sharing; W3C Trace Context for the id shape.
+- **App makers:** [Join a session](docs/getting-started.md), then the [examples](docs/examples.md) and the [spec](spec/v0.md). The Python validator and sequence checker need only the standard library.
+- **Questions, doubts, ideas:** [Discussions](https://github.com/irl-commons/stream-session/discussions) and the [FAQ](docs/faq.md).
+- **Other IRL Commons standards:** [stream-status](https://github.com/irl-commons/stream-status); the overview is at [irlcommons.org/open-standards.html](https://irlcommons.org/open-standards.html).
 
-## License
+## What's here
 
-[MIT](LICENSE).
+| Path | What it is |
+| --- | --- |
+| [`docs/`](docs/getting-started.md) | A getting-started guide, worked examples, an FAQ and the changelog |
+| [`spec/v0.md`](spec/v0.md) | The format: ids, the session record, leases and epochs, handover and takeover, hides, owners and grants, sharing levels, the optional server |
+| [`schema/stream-session.v0.schema.json`](schema/stream-session.v0.schema.json) | JSON Schema (2020-12) for every message |
+| [`fixtures/`](fixtures/README.md) | Valid messages, invalid ones with one mistake each, and sequences: handover, takeover, split brain, guests, revoking |
+| [`tools/stream_session.py`](tools/stream_session.py) | Validator and sequence checker. Python 3.10+, standard library only |
+| [`tests/`](tests/test_stream_session.py) | Tests for the tool |
+| [`SECURITY.md`](SECURITY.md) | How to report a security problem |
