@@ -94,6 +94,14 @@ Until v1, fields can still change between drafts. Each change gets a line in
 the [changelog](CHANGELOG.md) and updated fixtures. From v1 on, changes are
 additive only, and the rules for unknown values keep older devices safe.
 
+## What does it borrow from?
+
+Borrowed on purpose, and credited in the spec: stream-status and NOALBS;
+Raft's terms and stepping down; Chubby's lock-delay and fencing; etcd and
+NATS leases; NMOS IS-04 and IS-07 heartbeats; OAuth scopes, Biscuit and
+macaroons for narrowable rights; LiveKit's short-lived grants; IRLToolkit's
+two-sided ingest sharing; W3C Trace Context for the id shape.
+
 ## Where do I ask, or say what's missing?
 
 In [Discussions](https://github.com/irl-commons/stream-session/discussions).
